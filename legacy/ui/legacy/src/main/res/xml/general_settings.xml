@@ -514,6 +514,12 @@
             android:summary="@string/notification_show_contact_picture_summary"
             />
 
+        <SwitchPreferenceCompat
+            android:key="notification_keep_unread_notifications"
+            android:title="@string/keep_unread_notifications_title"
+            android:summary="@string/keep_unread_notifications_summary"
+            />
+
     </PreferenceScreen>
 
     <PreferenceScreen

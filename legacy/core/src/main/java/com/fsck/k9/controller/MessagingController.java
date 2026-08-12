@@ -2593,8 +2593,14 @@ public class MessagingController implements MessagingControllerRegistry, Messagi
     }
 
     public void clearNotifications(LocalMessageSearch search) {
+        // Preserve old behavior when called without newer "readOnly" parameter
+        // Old behavior was to clear all notifications, not only ones for read messages
+        clearNotifications(search, false);
+    }
+
+    public void clearNotifications(LocalMessageSearch search, boolean readOnly) {
         put("clearNotifications", null, () -> {
-            notificationOperations.clearNotifications(search);
+            notificationOperations.clearNotifications(search, readOnly);
         });
     }
 

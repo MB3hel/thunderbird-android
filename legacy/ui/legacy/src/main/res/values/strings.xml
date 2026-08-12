@@ -1157,4 +1157,6 @@ You can keep this message and use it as a backup for your secret key. If you wan
     <string name="debug_invalidate_access_token_already_modified">Stored access token already modified.</string>
     <string name="debug_feature_flags">DEBUG: Feature Flags</string>
     <string name="no_network_message_will_be_sent_later_toast">Offline. Message will be sent once connection is available</string>
+    <string name="keep_unread_notifications_title">Keep Unread Notifications</string>
+    <string name="keep_unread_notifications_summary">Don\'t auto clear notifications for unread messages</string>
 </resources>

@@ -11,6 +11,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.view.ActionMode
@@ -1408,7 +1409,8 @@ open class MessageHomeActivity :
     }
 
     private fun clearNotifications() {
-        messagingController.clearNotifications(search)
+        val readOnly = generalSettingsManager.getConfig().notification.keepUnreadNotifications
+        messagingController.clearNotifications(search, readOnly)
     }
 
     private val isAdditionalMessageListDisplayed: Boolean

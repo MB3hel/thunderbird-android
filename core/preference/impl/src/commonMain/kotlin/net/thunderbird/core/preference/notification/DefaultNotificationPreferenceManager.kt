@@ -94,6 +94,10 @@ class DefaultNotificationPreferenceManager(
                 key = NotificationSettingKey.LockScreenNotificationVisibility.value,
                 default = NOTIFICATION_PREFERENCE_DEFAULT_LOCK_SCREEN_NOTIFICATION_VISIBILITY,
             ),
+            keepUnreadNotifications = storage.getBoolean(
+                key = NotificationSettingKey.KeepUnreadNotifications.value,
+                defValue = NOTIFICATION_PREFERENCE_DEFAULT_KEEP_UNREAD_NOTIFICATIONS,
+            ),
         )
     }
 
@@ -151,6 +155,10 @@ class DefaultNotificationPreferenceManager(
                 storageEditor.putEnum(
                     NotificationSettingKey.LockScreenNotificationVisibility.value,
                     config.lockScreenNotificationVisibility,
+                )
+                storageEditor.putBoolean(
+                    NotificationSettingKey.KeepUnreadNotifications.value,
+                    config.keepUnreadNotifications,
                 )
                 storageEditor.commit().also { commited ->
                     logger.verbose(TAG) { "writeConfig: storageEditor.commit() resulted in: $commited" }
