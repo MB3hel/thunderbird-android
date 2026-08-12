@@ -23,6 +23,7 @@ import com.fsck.k9.preferences.Settings.PseudoEnumSetting;
 import com.fsck.k9.preferences.Settings.SettingsDescription;
 import com.fsck.k9.preferences.Settings.V;
 import com.fsck.k9.preferences.Settings.WebFontSizeSetting;
+import com.fsck.k9.preferences.upgrader.GeneralSettingsUpgraderTo112;
 import com.fsck.k9.preferences.upgrader.GeneralSettingsUpgraderTo24;
 import com.fsck.k9.preferences.upgrader.GeneralSettingsUpgraderTo31;
 import com.fsck.k9.preferences.upgrader.GeneralSettingsUpgraderTo58;
@@ -65,6 +66,7 @@ import static net.thunderbird.core.preference.display.visualSettings.message.lis
 import static net.thunderbird.core.preference.display.visualSettings.message.list.DisplayMessageListSettingsKt.MESSAGE_LIST_SETTINGS_DEFAULT_IS_SHOW_CORRESPONDENT_NAMES;
 import static net.thunderbird.core.preference.display.visualSettings.DisplayVisualSettingsKt.DISPLAY_SETTINGS_DEFAULT_IS_USE_MESSAGE_VIEW_FIXED_WIDTH_FONT;
 import static net.thunderbird.core.preference.notification.NotificationPreferenceKt.NOTIFICATION_PREFERENCE_DEFAULT_IS_QUIET_TIME_ENABLED;
+import static net.thunderbird.core.preference.notification.NotificationPreferenceKt.NOTIFICATION_PREFERENCE_DEFAULT_KEEP_UNREAD_NOTIFICATIONS;
 import static net.thunderbird.core.preference.notification.NotificationPreferenceKt.NOTIFICATION_PREFERENCE_DEFAULT_QUIET_TIME_END;
 import static net.thunderbird.core.preference.notification.NotificationPreferenceKt.NOTIFICATION_PREFERENCE_DEFAULT_QUIET_TIME_STARTS;
 import static net.thunderbird.core.preference.privacy.PrivacySettingsKt.PRIVACY_SETTINGS_DEFAULT_HIDE_TIME_ZONE;
@@ -190,6 +192,9 @@ class GeneralSettingsDescriptions {
         ));
         s.put("quietTimeStarts", Settings.versions(
             new V(1, new TimeSetting(NOTIFICATION_PREFERENCE_DEFAULT_QUIET_TIME_STARTS))
+        ));
+        s.put("keepUnreadNotifications", Settings.versions(
+            new V(112, new BooleanSetting(NOTIFICATION_PREFERENCE_DEFAULT_KEEP_UNREAD_NOTIFICATIONS))
         ));
         s.put("registeredNameColor", Settings.versions(
             new V(1, new ColorSetting(0xFF00008F)),
@@ -365,6 +370,7 @@ class GeneralSettingsDescriptions {
         u.put(79, new GeneralSettingsUpgraderTo79());
         u.put(89, new GeneralSettingsUpgraderTo89());
         u.put(111, new GeneralSettingsUpgraderTo111());
+        u.put(112, new GeneralSettingsUpgraderTo112());
 
         UPGRADERS = Collections.unmodifiableMap(u);
     }
