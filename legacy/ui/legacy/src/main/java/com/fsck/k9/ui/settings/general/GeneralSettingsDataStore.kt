@@ -62,6 +62,7 @@ class GeneralSettingsDataStore(
             "disable_notifications_during_quiet_time" -> !notificationSettings.isNotificationDuringQuietTimeEnabled
             "notification_summary_delete" -> notificationSettings.isSummaryDeleteActionEnabled
             "notification_show_contact_picture" -> notificationSettings.isShowContactPictureInNotification
+            "notification_keep_unread_notifications" -> notificationSettings.keepUnreadNotifications
             "privacy_hide_useragent" -> privacySettings.isHideUserAgent
             "privacy_hide_timezone" -> privacySettings.isHideTimeZone
             "privacy_incognito_keyboard" -> privacySettings.isIncognitoKeyboardEnabled
@@ -107,6 +108,7 @@ class GeneralSettingsDataStore(
             "notification_show_contact_picture" -> setIsShowContactPictureInNotification(
                 isShowContactPictureInNotification = value,
             )
+            "notification_keep_unread_notifications" -> setIsKeepUnreadNotifications(isKeepUnreadNotifications = value)
 
             "privacy_hide_useragent" -> setIsHideUserAgent(isHideUserAgent = value)
             "privacy_hide_timezone" -> setIsHideTimeZone(isHideTimeZone = value)
@@ -682,6 +684,17 @@ class GeneralSettingsDataStore(
                 notification = settings.notification.copy(
                     isShowContactPictureInNotification = isShowContactPictureInNotification,
                 ),
+            )
+        }
+    }
+
+    private fun setIsKeepUnreadNotifications(isKeepUnreadNotifications: Boolean) {
+        skipSaveSettings = true
+        generalSettingsManager.update { settings ->
+            settings.copy(
+                notification = settings.notification.copy(
+                    keepUnreadNotifications = isKeepUnreadNotifications
+                )
             )
         }
     }
